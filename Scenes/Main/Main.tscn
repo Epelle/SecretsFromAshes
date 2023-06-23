@@ -1,0 +1,105 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scenes/Main/Main.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/UpdateNewEntry/UpdateNewEntry.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/SettingsInterface/Settings.tscn" type="PackedScene" id=3]
+[ext_resource path="res://StyleResources/Buttons_StyleBoxTexture.tres" type="StyleBox" id=4]
+[ext_resource path="res://Assets/Icons/settings_64.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Icons/add_password_48.png" type="Texture" id=8]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 0.662745, 0.654902, 0.654902, 0.960784, 0, 0.376471, 0.392157, 1 )
+
+[sub_resource type="GradientTexture2D" id=2]
+gradient = SubResource( 1 )
+width = 1024
+height = 600
+use_hdr = true
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = SubResource( 2 )
+
+[node name="SearchBar" type="LineEdit" parent="."]
+margin_left = 136.94
+margin_top = 22.4492
+margin_right = 870.94
+margin_bottom = 59.4492
+placeholder_text = "Search"
+
+[node name="ButtonSettings" type="Button" parent="."]
+margin_left = 29.5481
+margin_top = 1.09176
+margin_right = 105.548
+margin_bottom = 71.0918
+custom_styles/hover = ExtResource( 4 )
+icon = ExtResource( 6 )
+flat = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+margin_left = 4.0
+margin_top = 150.0
+margin_right = 1019.0
+margin_bottom = 600.0
+
+[node name="EntriesContainer" type="GridContainer" parent="ScrollContainer"]
+margin_right = 1015.0
+margin_bottom = 450.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = 100
+custom_constants/hseparation = 100
+columns = 3
+
+[node name="Popup" type="Popup" parent="."]
+margin_left = 319.98
+margin_top = 161.04
+margin_right = 751.98
+margin_bottom = 454.04
+
+[node name="Panel" type="Panel" parent="Popup"]
+margin_right = 432.0
+margin_bottom = 293.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="UpdateNewEntry" parent="Popup/Panel" instance=ExtResource( 2 )]
+margin_right = -16.0
+margin_bottom = -34.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AddEntry" type="Button" parent="."]
+margin_left = 888.964
+margin_top = 15.5545
+margin_right = 948.964
+margin_bottom = 69.5545
+custom_styles/hover = ExtResource( 4 )
+icon = ExtResource( 8 )
+flat = true
+
+[node name="SettingPopup" type="Popup" parent="."]
+margin_left = 400.0
+margin_top = 90.0
+margin_right = 797.0
+margin_bottom = 188.0
+
+[node name="Panel" type="Panel" parent="SettingPopup"]
+margin_left = -4.0
+margin_right = 396.0
+margin_bottom = 90.0
+
+[node name="Settings" parent="SettingPopup/Panel" instance=ExtResource( 3 )]
+
+[connection signal="text_changed" from="SearchBar" to="." method="_on_SearchBar_text_changed"]
+[connection signal="pressed" from="ButtonSettings" to="." method="_on_ButtonSettings_pressed"]
+[connection signal="register" from="Popup/Panel/UpdateNewEntry" to="." method="_on_UpdateNewEntry_register"]
+[connection signal="pressed" from="AddEntry" to="." method="_on_AddEntry_pressed"]

@@ -1,0 +1,72 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/SettingsInterface/Settings.gd" type="Script" id=1]
+
+[node name="Settings" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -629.0
+margin_bottom = -511.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 55.4374
+margin_top = 5.99324
+margin_right = 401.437
+margin_bottom = 19.9932
+text = "Paramètres de la génération de mot de passe"
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 8.98987
+margin_top = 35.9594
+margin_right = 340.99
+margin_bottom = 226.959
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PassLenghtContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 332.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="VBoxContainer/PassLenghtContainer"]
+margin_top = 5.0
+margin_right = 254.0
+margin_bottom = 19.0
+text = "Nombre de caractère du mot de passe: "
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/PassLenghtContainer"]
+margin_left = 258.0
+margin_right = 332.0
+margin_bottom = 24.0
+min_value = 5.0
+max_value = 99.0
+value = 5.0
+align = 1
+
+[node name="SpecialsCharContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 28.0
+margin_right = 332.0
+margin_bottom = 52.0
+
+[node name="Label" type="Label" parent="VBoxContainer/SpecialsCharContainer"]
+margin_top = 5.0
+margin_right = 135.0
+margin_bottom = 19.0
+text = "Caractères spéciaux: "
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/SpecialsCharContainer"]
+margin_left = 139.0
+margin_right = 163.0
+margin_bottom = 24.0
+pressed = true
+
+[connection signal="value_changed" from="VBoxContainer/PassLenghtContainer/SpinBox" to="." method="_on_SpinBox_value_changed"]
+[connection signal="toggled" from="VBoxContainer/SpecialsCharContainer/CheckBox" to="." method="_on_CheckBox_toggled"]

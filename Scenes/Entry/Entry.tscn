@@ -1,0 +1,163 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Scenes/Entry/Entry.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Icons/fav_off.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Icons/edit_32.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Icons/delete_32.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Fonts/cityburn-®.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Assets/Icons/copy_32.png" type="Texture" id=6]
+[ext_resource path="res://StyleResources/Buttons_StyleBoxTexture.tres" type="StyleBox" id=7]
+[ext_resource path="res://Scenes/Entry/LabelSite.gd" type="Script" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxTexture" id=6]
+
+[sub_resource type="Theme" id=7]
+VScrollBar/styles/scroll = SubResource( 6 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxTexture" id=5]
+margin_left = 10.0
+margin_top = 10.0
+
+[node name="Entry" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 200.0
+margin_right = -540.0
+margin_bottom = -495.0
+rect_min_size = Vector2( 250, 105 )
+script = ExtResource( 1 )
+
+[node name="SiteContainer" type="HBoxContainer" parent="."]
+margin_right = 278.0
+margin_bottom = 38.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="ButtonDelete" type="Button" parent="SiteContainer"]
+margin_right = 44.0
+margin_bottom = 38.0
+size_flags_horizontal = 0
+custom_styles/hover = ExtResource( 7 )
+icon = ExtResource( 4 )
+flat = true
+
+[node name="LabelSite" type="Label" parent="SiteContainer"]
+margin_left = 48.0
+margin_top = 5.0
+margin_right = 198.0
+margin_bottom = 33.0
+rect_min_size = Vector2( 150, 0 )
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 3.0
+custom_colors/font_color = Color( 0.796078, 0.384314, 0.384314, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Test"
+align = 1
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonUpdate" type="Button" parent="SiteContainer"]
+margin_left = 202.0
+margin_right = 246.0
+margin_bottom = 38.0
+size_flags_horizontal = 0
+size_flags_vertical = 5
+custom_styles/hover = ExtResource( 7 )
+icon = ExtResource( 3 )
+flat = true
+
+[node name="FavIcon" type="Button" parent="SiteContainer"]
+margin_left = 250.0
+margin_right = 294.0
+margin_bottom = 38.0
+size_flags_horizontal = 0
+custom_styles/hover = ExtResource( 7 )
+icon = ExtResource( 2 )
+flat = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+visible = false
+margin_left = 37.0
+margin_top = 34.0
+margin_right = 254.0
+margin_bottom = 240.0
+theme = SubResource( 7 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+margin_right = 118.0
+margin_bottom = 60.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PseudoContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_right = 118.0
+margin_bottom = 18.0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/PseudoContainer"]
+margin_right = 51.0
+margin_bottom = 18.0
+custom_colors/font_color = Color( 0.796078, 0.384314, 0.384314, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Pseudo:"
+
+[node name="LabelPseudo" type="Label" parent="ScrollContainer/VBoxContainer/PseudoContainer"]
+margin_left = 55.0
+margin_top = 2.0
+margin_right = 55.0
+margin_bottom = 16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PassContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 22.0
+margin_right = 118.0
+margin_bottom = 60.0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/PassContainer"]
+margin_top = 10.0
+margin_right = 66.0
+margin_bottom = 28.0
+custom_colors/font_color = Color( 0.796078, 0.384314, 0.384314, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Password:"
+
+[node name="LabelPass" type="Label" parent="ScrollContainer/VBoxContainer/PassContainer"]
+margin_left = 70.0
+margin_top = 12.0
+margin_right = 70.0
+margin_bottom = 26.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CopyButton" type="Button" parent="ScrollContainer/VBoxContainer/PassContainer"]
+margin_left = 74.0
+margin_right = 118.0
+margin_bottom = 38.0
+custom_colors/font_color_pressed = Color( 0.658824, 0.109804, 0.109804, 1 )
+custom_styles/pressed = SubResource( 5 )
+icon = ExtResource( 6 )
+flat = true
+icon_align = 1
+
+[connection signal="gui_input" from="SiteContainer" to="." method="_on_SiteContainer_gui_input"]
+[connection signal="pressed" from="SiteContainer/ButtonDelete" to="." method="_on_ButtonDelete_pressed"]
+[connection signal="mouse_entered" from="SiteContainer/LabelSite" to="SiteContainer/LabelSite" method="_on_LabelSite_mouse_entered"]
+[connection signal="mouse_exited" from="SiteContainer/LabelSite" to="SiteContainer/LabelSite" method="_on_LabelSite_mouse_exited"]
+[connection signal="pressed" from="SiteContainer/FavIcon" to="." method="_on_FavIcon_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/PassContainer/CopyButton" to="." method="_on_ButtonClipBoard_pressed"]
