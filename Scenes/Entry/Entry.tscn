@@ -79,76 +79,80 @@ custom_styles/hover = ExtResource( 7 )
 icon = ExtResource( 3 )
 flat = true
 
-[node name="FavIcon" type="Button" parent="SiteContainer"]
+[node name="FavIcon" type="TextureRect" parent="SiteContainer"]
 margin_left = 250.0
-margin_right = 294.0
+margin_right = 282.0
 margin_bottom = 38.0
 size_flags_horizontal = 0
-custom_styles/hover = ExtResource( 7 )
-icon = ExtResource( 2 )
-flat = true
+texture = ExtResource( 2 )
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
-visible = false
+[node name="Scroll" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Scroll"]
 margin_left = 37.0
 margin_top = 34.0
 margin_right = 254.0
 margin_bottom = 240.0
 theme = SubResource( 7 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
-margin_right = 118.0
-margin_bottom = 60.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Scroll/ScrollContainer"]
+margin_right = 37.0
+margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PseudoContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
-margin_right = 118.0
+[node name="PseudoContainer" type="HBoxContainer" parent="Scroll/ScrollContainer/VBoxContainer"]
+margin_left = 2.0
+margin_right = 37.0
 margin_bottom = 18.0
+size_flags_horizontal = 8
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/PseudoContainer"]
-margin_right = 51.0
+[node name="Label" type="Label" parent="Scroll/ScrollContainer/VBoxContainer/PseudoContainer"]
+margin_right = 31.0
 margin_bottom = 18.0
 custom_colors/font_color = Color( 0.796078, 0.384314, 0.384314, 1 )
 custom_fonts/font = SubResource( 2 )
-text = "Pseudo:"
+text = "user:"
 
-[node name="LabelPseudo" type="Label" parent="ScrollContainer/VBoxContainer/PseudoContainer"]
-margin_left = 55.0
+[node name="LabelPseudo" type="Label" parent="Scroll/ScrollContainer/VBoxContainer/PseudoContainer"]
+margin_left = 35.0
 margin_top = 2.0
-margin_right = 55.0
+margin_right = 35.0
 margin_bottom = 16.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PassContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+[node name="PassContainer" type="HBoxContainer" parent="Scroll/ScrollContainer/VBoxContainer"]
 margin_top = 22.0
-margin_right = 118.0
-margin_bottom = 60.0
+margin_right = 37.0
+margin_bottom = 40.0
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/PassContainer"]
-margin_top = 10.0
-margin_right = 66.0
-margin_bottom = 28.0
+[node name="Label" type="Label" parent="Scroll/ScrollContainer/VBoxContainer/PassContainer"]
+margin_right = 33.0
+margin_bottom = 18.0
 custom_colors/font_color = Color( 0.796078, 0.384314, 0.384314, 1 )
 custom_fonts/font = SubResource( 3 )
-text = "Password:"
+text = "Pass:"
 
-[node name="LabelPass" type="Label" parent="ScrollContainer/VBoxContainer/PassContainer"]
-margin_left = 70.0
-margin_top = 12.0
-margin_right = 70.0
-margin_bottom = 26.0
+[node name="LabelPass" type="Label" parent="Scroll/ScrollContainer/VBoxContainer/PassContainer"]
+margin_left = 37.0
+margin_top = 2.0
+margin_right = 37.0
+margin_bottom = 16.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CopyButton" type="Button" parent="ScrollContainer/VBoxContainer/PassContainer"]
-margin_left = 74.0
-margin_right = 118.0
-margin_bottom = 38.0
+[node name="CopyButton" type="Button" parent="Scroll"]
+margin_left = 5.07033
+margin_top = 48.3027
+margin_right = 49.0703
+margin_bottom = 86.3027
+rect_scale = Vector2( 0.6, 0.6 )
 custom_colors/font_color_pressed = Color( 0.658824, 0.109804, 0.109804, 1 )
 custom_styles/pressed = SubResource( 5 )
 icon = ExtResource( 6 )
@@ -159,5 +163,4 @@ icon_align = 1
 [connection signal="pressed" from="SiteContainer/ButtonDelete" to="." method="_on_ButtonDelete_pressed"]
 [connection signal="mouse_entered" from="SiteContainer/LabelSite" to="SiteContainer/LabelSite" method="_on_LabelSite_mouse_entered"]
 [connection signal="mouse_exited" from="SiteContainer/LabelSite" to="SiteContainer/LabelSite" method="_on_LabelSite_mouse_exited"]
-[connection signal="pressed" from="SiteContainer/FavIcon" to="." method="_on_FavIcon_pressed"]
-[connection signal="pressed" from="ScrollContainer/VBoxContainer/PassContainer/CopyButton" to="." method="_on_ButtonClipBoard_pressed"]
+[connection signal="pressed" from="Scroll/CopyButton" to="." method="_on_ButtonClipBoard_pressed"]

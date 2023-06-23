@@ -7,9 +7,9 @@ signal update_gui
 #Hydrate l'UI de l'entrée avec ses informations
 func _hydrate(_data):
 	get_node("SiteContainer/LabelSite") .text = _data[ConstantsDefaultValueData.entry_key_website]
-	get_node("SiteContainer/FavIcon").icon = fav_on if _data[ConstantsDefaultValueData.entry_key_favorite] else fav_off
-	get_node("ScrollContainer/VBoxContainer/PseudoContainer/LabelPseudo").text = _data[ConstantsDefaultValueData.entry_key_pseudo]
-	get_node("ScrollContainer/VBoxContainer/PassContainer/LabelPass").text = _data[ConstantsDefaultValueData.entry_key_pass]	
+	get_node("SiteContainer/FavIcon").texture = fav_on if _data[ConstantsDefaultValueData.entry_key_favorite] else fav_off
+	get_node("Scroll/ScrollContainer/VBoxContainer/PseudoContainer/LabelPseudo").text = _data[ConstantsDefaultValueData.entry_key_pseudo]
+	get_node("Scroll/ScrollContainer/VBoxContainer/PassContainer/LabelPass").text = _data[ConstantsDefaultValueData.entry_key_pass]	
 	get_node("SiteContainer/ButtonDelete").connect("pressed",self,"_delete_entry",[_data[ConstantsDefaultValueData.entry_key_id]])
 	data = _data.duplicate()
 	pass
@@ -23,13 +23,13 @@ func _delete_entry(_id):
 ########################################## SIGNALS ######################################################################## 
 
 func _on_ButtonClipBoard_pressed():
-	OS.set_clipboard(get_node("ScrollContainer/VBoxContainer/PassContainer/LabelPass").text)
+	OS.set_clipboard(get_node("Scroll/ScrollContainer/VBoxContainer/PassContainer/LabelPass").text)
 	pass # Replace with function body.
 
 
 func _on_SiteContainer_gui_input(event):
 	if event is InputEventMouseButton and event.pressed:
-		get_node("ScrollContainer").visible = !get_node("ScrollContainer").visible
+		get_node("Scroll").visible = !get_node("Scroll").visible
 	pass # Replace with function body.
 
 
